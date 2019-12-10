@@ -23,26 +23,27 @@ class ArticleList extends Component {
     
     return (
       <main>
-        <h2>Articles</h2>
+        <h2>Main Articles Page</h2>
         <ul>
           {articles.map(article => {
             return (
-              <li key={article.article_id} className="oneArticle">
-                <label>
-                  <h3>Title: {article.title}</h3>
-                </label>
-                <p>
+                <li key={article.article_id} className="oneArticle">
+              <Link
+                className="hypertext"
+                to={`articles/${article.article_id}`}
+                key={article.article_id}
+              >
                   <label>
-                    <strong>Author: </strong> {article.author}
+                    <h3>Title: {article.title}</h3>
                   </label>
-                </p>
-                <p>{article.body}</p>
-                <Link
-                  to={`/articles/${article.article_id}`}
-                  key={article.article_id}
-                ></Link>
-              </li>
-              //onClick - article should navigate to singleArticle/ one article page...
+                  <p>
+                    <label>
+                      <strong>Author: </strong> {article.author}
+                    </label>
+                  </p>
+                  <p>{article.body}</p>
+              </Link>
+                </li>
             );
           })}
         </ul>

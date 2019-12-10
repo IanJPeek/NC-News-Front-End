@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import axios from "axios";
+import CommentList from "./CommentList"
 
 class SingleArticle extends Component {
   state = {
-    article: []
+    article: {}
     //isLoading: true
   };
 
@@ -12,20 +13,30 @@ class SingleArticle extends Component {
   }
 
   render() {
-    const {article} = this.state;
-    return <div>
-<h2>Article: {article.title} </h2>
-    </div>;
+    const { article } = this.state;
+    return (
+      <div>
+        <h2>{article.title} </h2>
+        <p>
+          <strong>Author:</strong> {article.author}
+        </p>
+        <p>{article.body}</p>
+<CommentList articleId={this.props.article_id}></CommentList>
+      </div>
+    );
   }
 
   getArticle = () => {
     axios
-      .get(`https://nc-news-ianp.herokuapp.com/api/articles/${this.props.article_id}`)
+      .get(
+        `https://nc-news-ianp.herokuapp.com/api/articles/${this.props.article_id}`
+      )
       .then(({ data }) => {
         console.log(data);
         this.setState({ article: data.article });
       });
   };
 }
+
 
 export default SingleArticle;
