@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from "axios";
 import CommentList from "./CommentList"
+import AddComment from "./AddComment";
 
 class SingleArticle extends Component {
   state = {
@@ -21,7 +22,8 @@ class SingleArticle extends Component {
           <strong>Author:</strong> {article.author}
         </p>
         <p>{article.body}</p>
-<CommentList articleId={this.props.article_id}></CommentList>
+        <CommentList articleId={this.props.article_id}></CommentList>
+        <AddComment></AddComment>
       </div>
     );
   }

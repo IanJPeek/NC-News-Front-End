@@ -5,39 +5,27 @@ import { Router } from "@reach/router";
 function NavBar(props) {
   return (
     <div className="NavBar">
-        <Link to="/">
-          <button path={`/`}>Home</button>
-        </Link>
+      <Link to="/">
+        <button>Home</button>
+      </Link>
       <span> </span>
       <div className="dropdown">
         <button className="dropbtn">Sort articles by topic</button>
         <div className="dropdown-content">
           {/* <Router> */}
-            <Link
-              to="/api/topics/coding"
-              className="dropLink"
-              path={`/api/topics/coding`}
-            >
-              Coding
-            </Link>
+          <Link to="/topics/coding" className="dropLink">
+            Coding
+          </Link>
           {/* </Router> */}
           {/* <Router> */}
-            <Link
-              to="/api/topics/cooking"
-              className="dropLink"
-              path={`/api/topics/cooking`}
-            >
-              Cooking
-            </Link>
+          <Link to="/topics/cooking" className="dropLink">
+            Cooking
+          </Link>
           {/* </Router> */}
           {/* <Router> */}
-            <Link
-              to="/api/topics/football"
-              className="dropLink"
-              path={`/api/topics/football`}
-            >
-              Football
-            </Link>
+          <Link to="/topics/football" className="dropLink">
+            Football
+          </Link>
           {/* </Router> */}
         </div>
       </div>

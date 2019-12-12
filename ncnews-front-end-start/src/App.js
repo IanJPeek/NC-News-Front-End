@@ -13,6 +13,7 @@ function App() {
       <NavBar className="NavBar"></NavBar>
       <Router>
         <ArticleList className="ArticleList" path="/"></ArticleList>
+        <ArticleList className="TopicArticles" path="/topics/:topic"></ArticleList>
         <SingleArticle path="/articles/:article_id"></SingleArticle>
       </Router>
     </div>
