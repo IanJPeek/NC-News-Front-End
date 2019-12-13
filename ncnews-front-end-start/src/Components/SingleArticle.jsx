@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from "axios";
 import CommentList from "./CommentList"
 import AddComment from "./AddComment";
+import VoteOnArticle from './VoteOnArticle';
 
 class SingleArticle extends Component {
   state = {
@@ -12,9 +13,10 @@ class SingleArticle extends Component {
   componentDidMount() {
     this.getArticle();
   }
-
+  
   render() {
     const { article } = this.state;
+    console.log(article, "article")
     return (
       <div>
         <h2>{article.title} </h2>
@@ -22,19 +24,20 @@ class SingleArticle extends Component {
           <strong>Author:</strong> {article.author}
         </p>
         <p>{article.body}</p>
+        <VoteOnArticle votes={article.votes}></VoteOnArticle>
         <CommentList articleId={this.props.article_id}></CommentList>
-        <AddComment></AddComment>
+        <AddComment articleId={this.props.article_id}></AddComment>
       </div>
     );
   }
-
+  
   getArticle = () => {
     axios
-      .get(
-        `https://nc-news-ianp.herokuapp.com/api/articles/${this.props.article_id}`
+    .get(
+      `https://nc-news-ianp.herokuapp.com/api/articles/${this.props.article_id}`
       )
       .then(({ data }) => {
-        console.log(data);
+        // console.log(data);
         this.setState({ article: data.article });
       });
   };

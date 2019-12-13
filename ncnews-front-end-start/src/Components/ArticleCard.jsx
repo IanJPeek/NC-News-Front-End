@@ -1,9 +1,11 @@
 import React from 'react';
+import { Link } from "@reach/router";
 
 function ArticleCard(props) {
+  const {article} = props
   return (
     <div>
-      {/* <li key={article.article_id} className="oneArticle">
+      <li key={article.article_id} className="oneArticle">
         <Link
           className="hypertext"
           to={`articles/${article.article_id}`}
@@ -19,7 +21,7 @@ function ArticleCard(props) {
           </p>
           <p>{article.body}</p>
         </Link>
-      </li> */}
+      </li>
     </div>
   );
 }

@@ -2,14 +2,15 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 class AddComment extends Component {
-
   state = {
     UsernameInput: "jessjelly",
     CommentInput: ""
-};
-
+  };
+  
   render() {
-const { UsernameInput, CommentInput } = this.state;
+    const { UsernameInput, CommentInput } = this.state;
+    // console.log(this.props, "start of AddComment")
+    // console.log(this.state, "added comment state")
     return (
       <div className="AddCommentForm">
         <form onSubmit={this.handleSubmit}>
@@ -40,18 +41,25 @@ const { UsernameInput, CommentInput } = this.state;
   }
 
 handleChange = event => {
-  console.log(this.state, "inAddComment");
+  // console.log(this.state, "in handleChange");
   const {name, value} = event.target;
   this.setState({[name]: value})
 }
 
 handleSubmit = event => {
+  const article_id = this.props.articleId;
 event.preventDefault();
 const {UsernameInput, CommentInput} = this.state;
-axios.post(`https://nc-news-ianp.herokuapp.com/api/articles/${this.props.article_id}`).then(({data}) =>{
-console.log(data, "addedComment");
-this.setState({UsernameInput: "", CommentInput:""});
-});
+// console.log(this.props, "props in submit")
+axios
+  .post(
+    `https://nc-news-ianp.herokuapp.com/api/articles/${article_id}/comments`,
+    { username: UsernameInput, body: CommentInput }
+  )
+  .then(({ data }) => {
+    console.log(data, "addedComment");
+    this.setState({ UsernameInput: "", CommentInput: "" });
+  });
 }
 
 

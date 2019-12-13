@@ -28,25 +28,7 @@ class ArticleList extends Component {
         <ul>
           {articles.map(article => {
             return ( 
-            // Extract out below as "<ArticleCard>" componenet...
-            // <ArticleCard></ArticleCard>
-              <li key={article.article_id} className="oneArticle">
-                <Link
-                  className="hypertext"
-                  to={`articles/${article.article_id}`}
-                  key={article.article_id}
-                >
-                  <label>
-                    <h3>Title: {article.title}</h3>
-                  </label>
-                  <p>
-                    <label>
-                      <strong>Author: </strong> {article.author}
-                    </label>
-                  </p>
-                  <p>{article.body}</p>
-                </Link>
-              </li>
+            <ArticleCard article={article} key={article.article_id}></ArticleCard>
             );
           })}
         </ul>
@@ -64,7 +46,6 @@ class ArticleList extends Component {
 
   getArticlesModifiedParams = () => {
     const topic = this.props.topic;
-    console.log(topic, "****");
     return axios
       .get("https://nc-news-ianp.herokuapp.com/api/articles", {
         params: {
@@ -72,7 +53,7 @@ class ArticleList extends Component {
         }
       })
       .then(({ data }) => {
-        console.log(data);
+        console.log(data, "from getArticles");
         this.setState({ articles: data.articles });
       })
       .catch(err => console.dir(err));
